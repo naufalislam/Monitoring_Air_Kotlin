@@ -51,9 +51,5 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
 
     override fun onPointerCaptureChanged(hasCapture: Boolean) {}
-    private fun logout() {
-        val sgSharedPref = applicationContext.getSharedPreferences("sg_shared_pref", MODE_PRIVATE)
-        sgSharedPref.edit().clear().commit()
-        startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-    }
+
 }
