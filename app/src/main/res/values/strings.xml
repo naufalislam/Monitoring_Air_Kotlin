@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Monitoring</string>
+    <!--String Navigation-->
+    <string name="home">Home</string>
+    <string name="device">Device</string>
+    <string name="account">Account</string>
+
+    <string name="navigation_drawer_open"/>
+    <string name="navigation_drawer_close"/>
+
+    <string name="hello_blank_fragment">Hello Blank Fragment</string>
+</resources>
