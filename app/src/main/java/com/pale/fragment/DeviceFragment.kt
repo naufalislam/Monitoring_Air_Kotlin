@@ -76,9 +76,7 @@ class DeviceFragment :Fragment(){
     }
 
     
-    fun setupRecyclerView(){
 
-    }
 
     fun tambahAlat(){
         val fragment: Fragment = TambahAlatFragment()
