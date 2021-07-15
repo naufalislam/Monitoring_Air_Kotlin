@@ -1,25 +1,23 @@
 package com.pale.fragment
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
-import com.pale.LoginActivity
+import com.pale.activity.LoginActivity
 import com.pale.R
 import com.pale.storage.SharedPrefManager
-import kotlinx.android.synthetic.main.fragment_account.*
-import org.w3c.dom.Text
-import java.lang.reflect.Array.getInt
-import kotlin.math.log
 
 class AccountFragment : Fragment() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -55,6 +53,9 @@ class AccountFragment : Fragment() {
         getActivity()?.startActivity(intent)
         getActivity()?.finish()
     }
+
+
+
 }
 
 

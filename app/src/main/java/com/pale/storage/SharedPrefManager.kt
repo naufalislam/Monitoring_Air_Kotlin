@@ -2,7 +2,7 @@ package com.pale.storage
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.pale.data.DataLogin
+import com.pale.data.LoginData
 
 class SharedPrefManager private constructor(private val mCtx: Context){
     val isLoggedIn: Boolean
@@ -11,10 +11,10 @@ class SharedPrefManager private constructor(private val mCtx: Context){
             return sharedPreferences.getInt("id", -1) != -1
         }
 
-    val data: DataLogin
+    val data: LoginData
         get() {
             val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-            return DataLogin(
+            return LoginData(
                     sharedPreferences.getInt("id", -1),
                     sharedPreferences.getString("name", null)!!,
                     sharedPreferences.getString("email", null)!!
@@ -24,7 +24,7 @@ class SharedPrefManager private constructor(private val mCtx: Context){
 
 
 
-    fun saveUser(data : DataLogin) {
+    fun saveUser(data : LoginData) {
 
         val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()

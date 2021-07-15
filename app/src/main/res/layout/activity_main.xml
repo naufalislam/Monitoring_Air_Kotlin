@@ -4,7 +4,16 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".MainActivity">
+tools:context=".activity.MainActivity">
+
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:backgroundTint="@color/white"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/_35sdp"-->
+<!--        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">-->
+<!--        -->
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
 
 <!--Content Main-->
 <FrameLayout
@@ -13,15 +22,19 @@ tools:context=".MainActivity">
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-<com.google.android.material.bottomnavigation.BottomNavigationView
-    android:id="@+id/bottomNav"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:background="@color/colorPrimary"
-    app:itemIconTint="@color/state_bnve"
-    app:itemTextColor="@color/state_bnve"
-    app:menu="@menu/menu_navigation"/>
+
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        app:itemIconTint="@color/state_bnve"
+        app:itemTextColor="@color/state_bnve"
+        app:menu="@menu/menu_navigation"/>
+
 
 
 

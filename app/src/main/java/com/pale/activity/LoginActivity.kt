@@ -1,10 +1,11 @@
-package com.pale
+package com.pale.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.pale.data.ResponseLogin
+import com.pale.R
+import com.pale.data.LoginResponse
 import com.pale.network.ApiService
 import com.pale.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.activity_login.*
@@ -23,23 +24,23 @@ class LoginActivity : AppCompatActivity() {
             val password = txt_password.text.toString().trim()
 
             if(email.isEmpty()){
-                txt_username.error = "Email required"
+                txt_username.error = "Email tidak boleh kosong"
                 txt_username.requestFocus()
                 return@setOnClickListener
             }
             if(password.isEmpty()){
-                txt_password.error = "Password required"
+                txt_password.error = "Password tidak boleh kosong"
                 txt_password.requestFocus()
                 return@setOnClickListener
             }
 
             ApiService.instance.Login(email, password)
-                    .enqueue(object: Callback<ResponseLogin> {
-                override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
+                    .enqueue(object: Callback<LoginResponse> {
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
 //                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
                 }
 
-                override fun onResponse(call: Call<ResponseLogin>, response: Response<ResponseLogin>) {
+                override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                     if(response.body()?.status!!){
 //                        Toast.makeText(applicationContext, "anjog mene", Toast.LENGTH_LONG).show()
                         SharedPrefManager.getInstance(applicationContext).saveUser(response.body()?.data!!)
