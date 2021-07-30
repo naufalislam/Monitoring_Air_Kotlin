@@ -24,7 +24,7 @@
             android:layout_margin="5dp"
             android:orientation="vertical"
             android:padding="5dp"
-            android:layout_width="@dimen/_150sdp"
+            android:layout_width="@dimen/_170sdp"
             android:layout_height="wrap_content">
 
             <!--Text view id Alat-->
@@ -67,21 +67,21 @@
 
         <ImageView
             android:id="@+id/ivEdit"
+            android:layout_margin="@dimen/_5sdp"
             android:src="@drawable/ic_edit"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/_12sdp"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
             card_view:tint="@color/black" />
 
         <ImageView
             android:id="@+id/ivHapus"
+            android:layout_margin="@dimen/_5sdp"
             android:src="@drawable/ic_delete"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/_12sdp"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_40sdp"
-            card_view:tint="@color/black"/>
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            card_view:tint="@color/black" />
 
 
 

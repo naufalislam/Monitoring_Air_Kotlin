@@ -2,6 +2,9 @@ package com.pale.storage
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
+import android.provider.Settings.Global.getString
+import android.provider.Settings.Secure.getString
 import com.pale.data.LoginData
 
 class SharedPrefManager private constructor(private val mCtx: Context){
@@ -43,6 +46,25 @@ class SharedPrefManager private constructor(private val mCtx: Context){
         editor.apply()
     }
 
+    fun saveId(idData: Int, namaData: String) {
+        val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        editor.putInt("idData", idData)
+        editor.putString("namaData",namaData)
+        editor.apply()
+
+    }
+    val id: Int
+        get() {
+            val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+            return sharedPreferences.getInt("idData", -1)
+        }
+    val nama: String?
+    get() {
+        val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE)
+        return sharedPreferences.getString("namaData", "Alat")
+    }
     companion object {
         private val SHARED_PREF_NAME = "my_shared_preff"
         @SuppressLint("StaticFieldLeak")

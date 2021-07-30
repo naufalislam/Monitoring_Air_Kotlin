@@ -1,5 +1,6 @@
 package com.pale.fragment
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.media.Image
 import android.os.Bundle
@@ -15,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.pale.R
 import com.pale.activity.AlatActivity
+import com.pale.activity.LoginActivity
 import com.pale.adapter.AlatAdapter
 import com.pale.model.AlatModel
 import com.pale.network.ApiService
@@ -30,7 +32,6 @@ class DeviceFragment :Fragment(){
     }
 
     private lateinit var alatAdapter : AlatAdapter
-    private lateinit var manager : DialogFragment
 
     private var idAlat : Int = 0
     override fun onCreateView(
@@ -42,19 +43,12 @@ class DeviceFragment :Fragment(){
         val tambah : ImageView = view.findViewById(R.id.bt_tambah)
         idAlat = SharedPrefManager.getInstance(requireContext()).data.id
         var listAlat  = view.findViewById<RecyclerView>(R.id.list_alat)
-        alatAdapter = AlatAdapter(arrayListOf(), object : AlatAdapter.OnAdapterListener {
-            override fun onClick(data: AlatModel.Data) {
-//                Toast.makeText(context, data.nama_kolam, Toast.LENGTH_SHORT).show()
-            }
+        alatAdapter = AlatAdapter(arrayListOf())
 
-        })
+
+
 
         listAlat.adapter =alatAdapter
-
-
-
-
-
 
 
         tambah.setOnClickListener {
@@ -66,14 +60,7 @@ class DeviceFragment :Fragment(){
 
 
 
-    fun intentEdit(id: Int,id_kolam:Int, nama_kolam :  Int ){
-        startActivity(
-                Intent(context,UpdateAlatFragment::class.java)
-                        .putExtra("intent_id", id)
-                        .putExtra("intent_kolam", id_kolam)
-                        .putExtra("intent_nama",nama_kolam)
-        )
-    }
+
 
     
 
@@ -98,7 +85,8 @@ class DeviceFragment :Fragment(){
 
 
     private fun getAlat(id: Int) {
-        ApiService.instance.Kolam(id).enqueue(object : Callback<AlatModel> {
+        ApiService.instance.Kolam(id)
+                .enqueue(object : Callback<AlatModel> {
             override fun onFailure(call: Call<AlatModel>, t: Throwable) {
                 Log.e("Device", t.toString())
             }

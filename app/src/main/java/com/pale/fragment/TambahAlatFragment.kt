@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.pale.activity.MainActivity
 import com.pale.R
-import com.pale.data.TambahAlatResponse
+import com.pale.data.TambahEditHapusAlatResponse
 import com.pale.network.ApiService
 import com.pale.storage.SharedPrefManager
 import kotlinx.android.synthetic.main.dialog_tambah_alat.*
@@ -47,18 +47,18 @@ class TambahAlatFragment : Fragment(){
             }
 
             ApiService.instance.Tambah(id, alat, edtNama)
-                    .enqueue(object : Callback<TambahAlatResponse>{
-                        override fun onFailure(call: Call<TambahAlatResponse>, t: Throwable) {
-//                            Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                    .enqueue(object : Callback<TambahEditHapusAlatResponse>{
+                        override fun onFailure(call: Call<TambahEditHapusAlatResponse>, t: Throwable) {
+                            Toast.makeText(getActivity(), t.message, Toast.LENGTH_LONG).show()
                         }
-                        override fun onResponse(call: Call<TambahAlatResponse>, response: Response<TambahAlatResponse>) {
-                            if(response.body()?.status!!){
+                        override fun onResponse(call: Call<TambahEditHapusAlatResponse>, response: Response<TambahEditHapusAlatResponse>) {
+                            if(response.isSuccessful){
                                 val intent = Intent(getActivity(), MainActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(intent)
                                 Toast.makeText(getActivity(), response.body()?.message, Toast.LENGTH_LONG).show()
                             }else{
-                                Toast.makeText(getActivity(), response.body()?.message, Toast.LENGTH_LONG).show()
+                                Toast.makeText(getActivity(), response.errorBody().toString(), Toast.LENGTH_LONG).show()
                             }
                         }
 
