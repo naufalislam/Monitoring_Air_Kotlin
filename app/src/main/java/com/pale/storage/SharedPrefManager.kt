@@ -24,8 +24,20 @@ class SharedPrefManager private constructor(private val mCtx: Context){
             )
         }
 
+    fun saveDataTemp(data : String) {
 
+        val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
 
+        editor.putString("data", data)
+        editor.apply()
+
+    }
+    val dataTemp: String?
+        get() {
+            val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+            return sharedPreferences.getString("data",null)
+        }
 
     fun saveUser(data : LoginData) {
 

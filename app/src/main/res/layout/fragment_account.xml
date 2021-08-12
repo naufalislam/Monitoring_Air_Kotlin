@@ -102,12 +102,35 @@
     </androidx.cardview.widget.CardView>
 
 
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvGantiPassword"
+            android:layout_marginBottom="@dimen/_75sdp"
+            android:layout_marginHorizontal="@dimen/_6sdp"
+            android:backgroundTint="@color/color2"
+            app:cardCornerRadius="@dimen/_12sdp"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_20sdp">
+            <TextView
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/_15sdp"
+                android:layout_gravity="center"
+                android:text="Ganti Password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvLogout"
+        android:layout_marginHorizontal="@dimen/_6sdp"
         android:layout_marginBottom="@dimen/_75sdp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:backgroundTint="@color/color2"
         app:cardCornerRadius="@dimen/_12sdp"
         android:layout_width="@dimen/_100sdp"
@@ -124,5 +147,7 @@
     </androidx.cardview.widget.CardView>
 
 
+
+    </LinearLayout>
 
 </RelativeLayout>

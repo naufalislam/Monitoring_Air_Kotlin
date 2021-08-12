@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MonitoringKotlin"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.AlatActivity"></activity>
+        <activity android:name=".activity.VerifikasiPasswordActivity"></activity>
+        <activity android:name=".activity.LupaPasswordActivity" />
+        <activity android:name=".activity.AlatActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.SplashScreen">
             <intent-filter>

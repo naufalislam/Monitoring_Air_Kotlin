@@ -2,6 +2,7 @@ package com.pale.adapter
 
 import android.content.Intent
 import android.media.Image
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,7 @@ import com.pale.storage.SharedPrefManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.math.log
 
 class AlatAdapter(val alat : ArrayList<AlatModel.Data>)
     :RecyclerView.Adapter<AlatAdapter.ViewHolder>(){
@@ -42,9 +44,9 @@ class AlatAdapter(val alat : ArrayList<AlatModel.Data>)
     override fun onBindViewHolder(holder: AlatAdapter.ViewHolder, position: Int) {
 
         val data = alat[position]
-        val idData_kolam = data.id
+        val idData_kolam = data.id_kolam
         val namaData_kolam = data.nama_kolam
-        val idData_alat = data.id_kolam
+        val idData_alat = data.id
 
 
         holder.textIdAlat.text = data.id
@@ -55,10 +57,11 @@ class AlatAdapter(val alat : ArrayList<AlatModel.Data>)
         }
         holder.ImageViewEdit.setOnClickListener {
 //            listener.onClick(data)
-            editalat(holder.ImageViewEdit, idData_kolam.toString().toInt(), namaData_kolam.toString())
+            editalat(holder.ImageViewEdit, idData_alat.toString().toInt(), namaData_kolam.toString())
 
         }
         holder.ImageViewHapus.setOnClickListener {
+            Log.e("idAlat", idData_kolam.toString())
             hapusAlat(holder.ImageViewHapus,data.nama_kolam.toString(), idData_kolam.toString().toInt())
         }
 
@@ -83,6 +86,7 @@ class AlatAdapter(val alat : ArrayList<AlatModel.Data>)
 
     private fun hapusData(view: View, idData: Int) {
         val activity = view.context as AppCompatActivity
+//        Toast.makeText(activity, idData.toString(), Toast.LENGTH_SHORT).show()
 
         ApiService.instance.hapusAlat(idData)
                 .enqueue(object : Callback<TambahEditHapusAlatResponse> {
@@ -91,6 +95,7 @@ class AlatAdapter(val alat : ArrayList<AlatModel.Data>)
                     }
 
                     override fun onResponse(call: Call<TambahEditHapusAlatResponse>, response: Response<TambahEditHapusAlatResponse>) {
+                        Toast.makeText(activity, response.message(), Toast.LENGTH_SHORT).show()
                         if (response.body()?.status!!) {
                             kembaliDevicemanager(view)
                             Toast.makeText(activity, response.message(), Toast.LENGTH_SHORT).show()

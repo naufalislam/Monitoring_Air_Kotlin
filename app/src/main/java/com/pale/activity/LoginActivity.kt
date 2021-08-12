@@ -18,6 +18,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+
+
         btn_login.setOnClickListener {
 
             val email = txt_username.text.toString().trim()
@@ -56,6 +58,12 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
 
+        }
+
+
+        tvLupaPassword.setOnClickListener {
+                val intent = Intent(applicationContext, LupaPasswordActivity::class.java)
+                startActivity(intent)
         }
 
     }

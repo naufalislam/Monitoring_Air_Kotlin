@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.pale.R
 import com.pale.activity.MainActivity
@@ -34,29 +37,35 @@ class UpdateAlatFragment : Fragment() {
         var nama = SharedPrefManager.getInstance(requireContext()).nama
 
 
-        val alat = txtUpdateId.text
-        val edtNama = txtUpdateNama.text.toString().trim()
+        val txtId: EditText = view.findViewById(R.id.txtUpdateId)as EditText
+        val txtNama: EditText = view.findViewById(R.id.txtUpdateNama)as EditText
+        val btnupdate : Button = view.findViewById(R.id.btnUpdate)
+
+        txtId.setText(id.toString())
+        txtNama.setText(nama)
+
+//        val alat = txtUpdateId.text
+//        val edtNama = txtUpdateNama.text.toString().trim()
         Log.e("id_kolam", id.toString())
         Log.e("nama_kolam",nama.toString())
 
-        txtUpdateId.setText(id)
-        txtUpdateNama.setText(nama)
 
-        btnUpdate.setOnClickListener {
 
-            if(alat.isEmpty()){
+        btnupdate.setOnClickListener {
+
+            if(txtUpdateId.text.isEmpty()){
                 txtUpdateId.error = "Id tidak boleh kosong"
                 txtUpdateId.requestFocus()
                 return@setOnClickListener
             }
-            if(edtNama.isEmpty()){
+            if(txtUpdateNama.text.isEmpty()){
                 txtUpdateNama.error = "Nama tidak boleh kosong"
                 txtUpdateNama.requestFocus()
                 return@setOnClickListener
             }
 
 
-            ApiService.instance.Update( id, alat, edtNama)
+            ApiService.instance.Update( id,txtUpdateId.text, txtNama.text.toString())
                     .enqueue(object : Callback<TambahEditHapusAlatResponse> {
                         override fun onFailure(call: Call<TambahEditHapusAlatResponse>, t: Throwable) {
                             Toast.makeText(getActivity(), t.message, Toast.LENGTH_SHORT).show()

@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.pale.activity.LoginActivity
 import com.pale.R
 import com.pale.storage.SharedPrefManager
@@ -29,6 +31,7 @@ class AccountFragment : Fragment() {
         val email = SharedPrefManager.getInstance(requireContext()).data.email
 
         val btnLogout: CardView = view.findViewById(R.id.cvLogout)
+        val btnGantiPassword : CardView = view.findViewById(R.id.cvGantiPassword)
         val txtId: TextView = view.findViewById(R.id.Id_user)as TextView
         val txtNama: TextView = view.findViewById(R.id.Nama_user)as TextView
         val txtEmail: TextView = view.findViewById(R.id.Email_user)as TextView
@@ -40,11 +43,19 @@ class AccountFragment : Fragment() {
         txtNama.setText(nama)
         txtEmail.setText(email)
 
-
+        btnGantiPassword.setOnClickListener { gantipassword() }
 
         btnLogout.setOnClickListener { logOut() }
 
         return view
+    }
+
+    private fun gantipassword() {
+        val fragment: Fragment = GantiPasswordFragment()
+        val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fl_container, fragment)
+        fragmentTransaction.commit()
     }
 
     private fun logOut() {
