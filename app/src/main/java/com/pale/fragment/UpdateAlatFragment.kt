@@ -34,6 +34,7 @@ class UpdateAlatFragment : Fragment() {
         val view = inflater.inflate(R.layout.dialog_update_alat, container, false)
 
         var id = SharedPrefManager.getInstance(requireContext()).id
+        var id_alat = SharedPrefManager.getInstance(requireContext()).idAlat
         var nama = SharedPrefManager.getInstance(requireContext()).nama
 
 
@@ -41,13 +42,13 @@ class UpdateAlatFragment : Fragment() {
         val txtNama: EditText = view.findViewById(R.id.txtUpdateNama)as EditText
         val btnupdate : Button = view.findViewById(R.id.btnUpdate)
 
-        txtId.setText(id.toString())
+        txtId.setText(id_alat.toString())
         txtNama.setText(nama)
 
 //        val alat = txtUpdateId.text
 //        val edtNama = txtUpdateNama.text.toString().trim()
-        Log.e("id_kolam", id.toString())
-        Log.e("nama_kolam",nama.toString())
+        Log.e("id_alat", id_alat.toString())
+//        Log.e("id",id.toString())
 
 
 

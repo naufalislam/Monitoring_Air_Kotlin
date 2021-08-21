@@ -24,45 +24,43 @@
             android:layout_margin="5dp"
             android:orientation="vertical"
             android:padding="5dp"
-            android:layout_width="@dimen/_170sdp"
+            android:layout_width="@dimen/_130sdp"
             android:layout_height="wrap_content">
 
             <!--Text view id Alat-->
             <TextView
+                android:layout_marginVertical="@dimen/_5sdp"
                 android:id="@+id/txt_id_alat"
                 android:textColor="@color/black"
                 android:text="12345"
-                android:textSize="@dimen/_20sdp"
+                android:textSize="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-<!--            &lt;!&ndash;Text view id kolam&ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:text="3"-->
-<!--                android:id="@+id/txt_id_kolam"-->
-<!--                android:textSize="@dimen/_20sdp"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content" />-->
+
 
             <!--Text view nama Alat-->
             <TextView
+                android:layout_marginVertical="@dimen/_5sdp"
                 android:text="Kolam 4"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_20sdp"
+                android:textSize="@dimen/_15sdp"
                 android:id="@+id/txt_nama_alat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-<!--            &lt;!&ndash;Text view nama pemilik&ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:textSize="@dimen/_20sdp"-->
-<!--                android:id="@+id/txt_nama_pemilik"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content" />-->
+
 
         </LinearLayout>
 
-
+        <TextView
+            android:id="@+id/status"
+            android:textSize="@dimen/_10sdp"
+            android:text="aktif"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
 
         <ImageView

@@ -25,6 +25,7 @@ class AlatActivity : AppCompatActivity() {
     private var id : Int = 0
     private var id_kolam : Int = 0
     private var pemilik : Int = 0
+    private var namaAlat : String = "Alat"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +33,9 @@ class AlatActivity : AppCompatActivity() {
         setContentView(R.layout.activity_alat)
 
 //        id = intent.getIntExtra("intent_id",0)
-        id = SharedPrefManager.getInstance(applicationContext).id
+        id = SharedPrefManager.getInstance(applicationContext).idAlat
+        namaAlat  = SharedPrefManager.getInstance(applicationContext).nama.toString()
+
         Log.e("id_kolam", id.toString())
 
         id_kolam = intent.getIntExtra("intent_kolam",0)
@@ -50,7 +53,7 @@ class AlatActivity : AppCompatActivity() {
         mainHandler.post(object : Runnable {
             override fun run() {
                 getData()
-                mainHandler.postDelayed(this, 1000)
+                mainHandler.postDelayed(this, 100000)
             }
         })
 
@@ -62,7 +65,7 @@ class AlatActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-            getDataSensor(id_kolam)
+            getDataSensor(id)
 
 
     }
@@ -84,9 +87,9 @@ class AlatActivity : AppCompatActivity() {
                        if (response.isSuccessful) {
                            val ListData = response.body()!!.data
                            ListData.forEach {
-                               Log.e("Device", "nama_kolam ${it.kolam}")
-                               tvId.setText("${it.id}")
-                               tvNama.setText("${it.kolam}")
+//                               Log.e("Device", "nama_kolam ${it.kolam}")
+                               tvId.setText("ID : ${it.kolam}")
+                               tvNama.setText("Nama : "+namaAlat)
                                tvPh.setText("${it.ph}")
                                tvSuhu1.setText("${it.suhu1}")
                                tvSuhu2.setText("${it.suhu2}")

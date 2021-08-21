@@ -5,6 +5,7 @@ data class AlatModel (val data : List<Data>){
         val id: String?,
         val id_kolam: String?,
         val nama_kolam: String?,
-        val pemilik: String?
+        val pemilik: String?,
+        val status: String
     )
 }

@@ -58,11 +58,12 @@ class SharedPrefManager private constructor(private val mCtx: Context){
         editor.apply()
     }
 
-    fun saveId(idData: Int, namaData: String) {
+    fun saveId(idData: Int,idAlat:Int, namaData: String) {
         val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
         editor.putInt("idData", idData)
+        editor.putInt("idAlat", idAlat)
         editor.putString("namaData",namaData)
         editor.apply()
 
@@ -72,6 +73,12 @@ class SharedPrefManager private constructor(private val mCtx: Context){
             val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
             return sharedPreferences.getInt("idData", -1)
         }
+    val idAlat :Int
+    get() {
+        val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        return sharedPreferences.getInt("idAlat", -1)
+    }
+
     val nama: String?
     get() {
         val sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE)

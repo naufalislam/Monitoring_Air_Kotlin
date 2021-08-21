@@ -1,6 +1,7 @@
 package com.pale.adapter
 
 import android.content.Intent
+import android.graphics.Color
 import android.media.Image
 import android.util.Log
 import android.view.LayoutInflater
@@ -44,25 +45,35 @@ class AlatAdapter(val alat : ArrayList<AlatModel.Data>)
     override fun onBindViewHolder(holder: AlatAdapter.ViewHolder, position: Int) {
 
         val data = alat[position]
+        val idData_alat = data.id
         val idData_kolam = data.id_kolam
         val namaData_kolam = data.nama_kolam
-        val idData_alat = data.id
+        val status = data.status
 
 
-        holder.textIdAlat.text = data.id
+        holder.textIdAlat.text = data.id_kolam
         holder.textNamaAlat.text = data.nama_kolam
+        if (status == "1"){
+            holder.textStatus.text ="Aktif"
+            holder.textStatus.setTextColor(Color.parseColor("#00ff00"))
+        }
+        else{
+            holder.textStatus.text = "Berhenti"
+            holder.textStatus.setTextColor(Color.parseColor("#ff0000"))
+        }
         holder.textNamaAlat.setOnClickListener {
 //            listener.onClick( data )
-            detailalat(holder.textNamaAlat, idData_alat.toString().toInt(),namaData_kolam.toString())
+            detailalat(holder.textNamaAlat, idData_alat.toString().toInt(),idData_kolam.toString().toInt(),namaData_kolam.toString())
         }
         holder.ImageViewEdit.setOnClickListener {
 //            listener.onClick(data)
-            editalat(holder.ImageViewEdit, idData_alat.toString().toInt(), namaData_kolam.toString())
-
+            editalat(holder.ImageViewEdit, idData_alat.toString().toInt(),idData_kolam.toString().toInt(), namaData_kolam.toString())
+//            Log.e("id", idData_alat.toString())
+//            Log.e("idAlat", idData_kolam.toString().toInt().toString())
         }
         holder.ImageViewHapus.setOnClickListener {
             Log.e("idAlat", idData_kolam.toString())
-            hapusAlat(holder.ImageViewHapus,data.nama_kolam.toString(), idData_kolam.toString().toInt())
+            hapusAlat(holder.ImageViewHapus,data.nama_kolam.toString(), idData_alat.toString().toInt())
         }
 
     }
@@ -95,8 +106,8 @@ class AlatAdapter(val alat : ArrayList<AlatModel.Data>)
                     }
 
                     override fun onResponse(call: Call<TambahEditHapusAlatResponse>, response: Response<TambahEditHapusAlatResponse>) {
-                        Toast.makeText(activity, response.message(), Toast.LENGTH_SHORT).show()
-                        if (response.body()?.status!!) {
+//                        Toast.makeText(activity, response.message(), Toast.LENGTH_SHORT).show()
+                        if (response.isSuccessful) {
                             kembaliDevicemanager(view)
                             Toast.makeText(activity, response.message(), Toast.LENGTH_SHORT).show()
                         } else {
@@ -111,6 +122,7 @@ class AlatAdapter(val alat : ArrayList<AlatModel.Data>)
     class ViewHolder(view : View): RecyclerView.ViewHolder(view){
         val textIdAlat = view.findViewById<TextView>(R.id.txt_id_alat)
         val textNamaAlat = view.findViewById<TextView>(R.id.txt_nama_alat)
+        val textStatus = view.findViewById<TextView>(R.id.status)
         val ImageViewEdit = view.findViewById<ImageView>(R.id.ivEdit)
         val ImageViewHapus =  view.findViewById<ImageView>(R.id.ivHapus)
     }
@@ -120,22 +132,21 @@ class AlatAdapter(val alat : ArrayList<AlatModel.Data>)
         alat.addAll(data)
         notifyDataSetChanged()
     }
-    fun editalat(view: View, idData: Int, namaData : String) {
+    fun editalat(view: View, idData: Int,idAlat : Int, namaData : String) {
 
         val activity = view.context as AppCompatActivity
-        SharedPrefManager.getInstance(activity).saveId(idData, namaData)
+        SharedPrefManager.getInstance(activity).saveId(idData,idAlat, namaData)
         val myFragment: Fragment = UpdateAlatFragment()
         activity.supportFragmentManager.beginTransaction().replace(R.id.fl_container, myFragment).addToBackStack(null).commit()
 
     }
-    fun detailalat(view: View, idData: Int, namaData: String) {
+    fun detailalat(view: View, idData: Int,idAlat: Int, namaData: String) {
         val activity = view.context as AppCompatActivity
-        SharedPrefManager.getInstance(activity).saveId(idData,namaData)
+        SharedPrefManager.getInstance(activity).saveId(idData,idAlat,namaData)
 //        val myFragment: Fragment = UpdateAlatFragment()
 //        activity.supportFragmentManager.beginTransaction().replace(R.id.fl_container, myFragment).addToBackStack(null).commit()
         val intent = Intent(activity, AlatActivity::class.java)
                 activity.startActivity(intent)
-                activity.finish()
 
     }
     interface OnAdapterListener{

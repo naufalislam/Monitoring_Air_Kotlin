@@ -69,7 +69,7 @@ class VerifikasiPasswordActivity : AppCompatActivity() {
 //
                         val intent = Intent (applicationContext,LoginActivity::class.java)
                         startActivity(intent)
-                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext, "Ganti Password Berhasil", Toast.LENGTH_LONG).show()
                     }
                     else{
                         Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()

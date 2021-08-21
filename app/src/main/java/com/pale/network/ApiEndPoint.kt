@@ -69,4 +69,12 @@ interface ApiEndPoint {
             @Field("password") password:String,
             @Field("password_confirmation") password_confirmation:String
     ): Call<LupaPasswordResponse>
+
+  @FormUrlEncoded
+  @POST("ganti")
+  fun gantipassword(
+          @Field("id") id: Int,
+          @Field("password_lama") passwordLama : String,
+          @Field("password_baru") passwordBaru : String
+          ): Call<LupaPasswordResponse>
 }

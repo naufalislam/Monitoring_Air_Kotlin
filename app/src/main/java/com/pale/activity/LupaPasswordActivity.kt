@@ -37,8 +37,8 @@ class LupaPasswordActivity : AppCompatActivity() {
                     override fun onResponse(call: Call<LupaPasswordResponse>, response: Response<LupaPasswordResponse>) {
                         val t = response.body()!!
                         if (response.isSuccessful) {
-                            Toast.makeText(applicationContext, t.toString(), Toast.LENGTH_LONG).show()
-                            SharedPrefManager.getInstance(applicationContext).saveDataTemp(email.toString())
+                            Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+//                            SharedPrefManager.getInstance(applicationContext).saveDataTemp(email.toString())
 
                             val intent = Intent (applicationContext,VerifikasiPasswordActivity::class.java)
                             startActivity(intent)
