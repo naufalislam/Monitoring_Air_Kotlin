@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".notifikasi.BaseAplication"
         android:allowBackup="true"
         android:icon="@drawable/icon2"
         android:label="@string/app_name"
@@ -12,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MonitoringKotlin"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.VerifikasiPasswordActivity"></activity>
+        <activity android:name=".activity.NotifikasiActivity"></activity>
+        <activity android:name=".activity.TambahAlatScanActivity" />
+        <activity android:name=".activity.VerifikasiPasswordActivity" />
         <activity android:name=".activity.LupaPasswordActivity" />
         <activity android:name=".activity.AlatActivity" />
         <activity android:name=".activity.LoginActivity" />

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
 import com.pale.R
 import com.pale.data.LoginResponse
 import com.pale.network.ApiService
@@ -81,4 +82,6 @@ class LoginActivity : AppCompatActivity() {
         finish()
         return super.onSupportNavigateUp()
     }
+
+
 }
